@@ -1,2 +1,2 @@
-# DataStructure
-Data Structure and Algorithms implementation with Python.
+# AlgorithmsWithPython
+Algorithms and DataStructure implemented with Python Language.
