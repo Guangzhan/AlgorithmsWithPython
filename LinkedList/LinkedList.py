@@ -156,6 +156,41 @@ class LinkedList(object):
                     previous_node = current_node
                     current_node = current_node.next
 
+    # returns the length of the list
+    def get_length(self):
+        return self.length
+
+    # returns the first element of the list
+    def get_first(self):
+        if self.length == 0:
+            print("The list is empty")
+        else:
+            return self.head.data
+
+    # returns the last element of the list
+    def get_last(self):
+        if self.length == 0:
+            print("The list is empty")
+        else:
+            current_node = self.head
+            while current_node.next is not None:
+                current_node = current_node.next
+            return current_node.data
+
+    # returns node at any position
+    def get_pos(self, pos):
+        count = 0
+        current_node = self.head
+        if pos > self.length or pos < 0:
+            print("The position does not exist. Please enter a valid position")
+        else:
+            while current_node.next is not None or count < pos:
+                count += 1
+                if count == pos:
+                    return current_node.data
+                else:
+                    current_node = current_node.next
+
 
 if __name__ == '__main__':
     node1 = Node(1)
@@ -177,6 +212,7 @@ if __name__ == '__main__':
     ll.add_node(node7)
     ll.add_node(node8)
     ll.delete_pos(1)
+    ll.get_pos(1)
     ll.print_list()
 
 
