@@ -129,9 +129,32 @@ class LinkedList(object):
                 self.length -= 1
                 return
             else:
+                print(current_node.data)
                 previous_node = current_node
                 current_node = current_node.next
-            print("The data provided is not present")
+                print(current_node.data)
+        print("The data provided is not present")
+
+    # method to delete a node at a particular position
+    def delete_pos(self, pos):
+        count = 0
+        current_node = self.head
+        previous_node = self.head
+
+        if pos > self.length or pos < 0:
+            print("The position does not exist. Please enter a valid position")
+        elif pos == 1:
+            self.delete_beg()
+        else:
+            while current_node.next is not None or count < pos:
+                count += 1
+                if count == pos:
+                    previous_node.next = current_node.next
+                    self.length -= 1
+                    return
+                else:
+                    previous_node = current_node
+                    current_node = current_node.next
 
 
 if __name__ == '__main__':
@@ -150,13 +173,10 @@ if __name__ == '__main__':
     ll.add_node(node3)
     ll.add_node(node4)
     ll.add_node(node5)
-    ll.add_last(node6)
-    print(ll.length)
-    ll.add_beg(node7)
-    ll.add_last(node8)
-    ll.delete_beg()
-    ll.delete_last()
-
+    ll.add_node(node6)
+    ll.add_node(node7)
+    ll.add_node(node8)
+    ll.delete_pos(1)
     ll.print_list()
 
 
