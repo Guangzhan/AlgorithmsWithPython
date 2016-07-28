@@ -192,31 +192,6 @@ class LinkedList(object):
                     current_node = current_node.next
 
 
-# Binary search tree
-# noinspection PyMethodParameters
-class BSTNode:
-    def __init__(root, data=None):
-        root.left = None
-        root.right = None
-        root.data = data
-
-    def insert_node(root, node):
-        if root is None:
-            # noinspection PyUnusedLocal
-            root = node
-        else:
-            if root.data > node.data:
-                if root.left is None:
-                    root.left = node
-                else:
-                    root.insert_node(root.left, node)
-            else:
-                if root.right is None:
-                    root.right = node
-                else:
-                    root.insert_node(root.right, node)
-
-
 if __name__ == '__main__':
     node1 = Node(1)
     node2 = Node(2)
@@ -239,34 +214,3 @@ if __name__ == '__main__':
     ll.delete_pos(1)
     ll.get_pos(1)
     ll.print_list()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
