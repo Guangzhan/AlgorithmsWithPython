@@ -40,3 +40,69 @@ class LinkedList:
             self.add_begin(node)
         else:
             self.add_last(node)
+
+    # method to add a node at the beginning of the list with a data
+    def add_begin(self, node):
+        new_node = node
+        new_node.next = self.head
+        self.head = new_node
+        self.length += 1
+
+    # method to add a node after the data have the data=data. the data of the new node is value2
+    def add_after(self, data, node):
+        new_node = node
+        current_node = self.head
+
+        while current_node.next is not None or current_node.data != data:
+            if current_node.data != data:
+                new_node.next = current_node.next
+                current_node.next = new_node
+                self.length += 1
+                return
+            else:
+                current_node = current_node.next
+
+                # "The data provided is not present"
+
+    # method to add a node at a particular position
+    def add_pos(self, pos, node):
+        current_node = self.head
+        previous_node = self.head
+        count = 0
+
+        if pos > self.length or pos < 0:
+            print("The position does not exist, please enter a valid position")
+        else:
+            while current_node.next is not None or count < pos:
+                count += 1
+                if count == pos:
+                    previous_node.next = node
+                    node.next = current_node
+                    self.length += 1
+                    return
+                else:
+                    previous_node = current_node
+                    current_node = current_node.next
+
+
+if __name__ == '__main__':
+    node1 = Node(1)
+    node2 = Node(2)
+    node3 = Node(3)
+    node4 = Node(4)
+    node5 = Node(5)
+    node6 = Node(6)
+    node7 = Node(7)
+    node8 = Node(8)
+    node9 = Node(9)
+    ll = LinkedList()
+    ll.add_node(node1)
+    ll.add_node(node2)
+    ll.add_node(node3)
+    ll.add_node(node4)
+    ll.add_node(node5)
+    ll.add_node(node6)
+    ll.add_node(node7)
+    ll.add_node(node8)
+    ll.add_node(node9)
+    ll.print_list()
