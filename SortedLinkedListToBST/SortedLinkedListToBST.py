@@ -9,13 +9,14 @@ class Node:
         self.data = data
         self.next = None
 
-    # method for setting the data filed of the node
+    # method for setting the data field of the node
     def set_data(self, data):
         self.data = data
 
     def get_data(self):
         return self.data
 
+    # method for setting the next field of the node
     def set_next(self, next):
         self.next = next
 
