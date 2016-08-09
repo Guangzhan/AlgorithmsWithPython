@@ -86,7 +86,7 @@ class LinkedList:
 
     # method to add a node at the end of a list
     def add_last(self, node):
-        current_node = None
+        current_node = self.head
 
         while current_node.next is not None:
             current_node = current_node.next
@@ -116,6 +116,30 @@ class LinkedList:
                 current_node = current_node.next
             previous_node.next = None
             self.length -= 1
+
+    # method to delete a node after the node having the given data
+    def delete_value(self, data):
+        current_node = self.head
+        previous_node = self.head
+
+        while current_node.next is not None or current_node.data != data:
+            if current_node.data == data:
+                previous_node.next = current_node.next
+                self.length -= 1
+            else:
+                previous_node = current_node
+                current_node = current_node.next
+
+        print("The data provided is not present")
+
+    # method to print the whole list
+    def print_list(self):
+        node_list = []
+        current_node = self.head
+        while current_node is not None:
+            node_list.append(current_node.data)
+            current_node = current_node.next
+        print(node_list)
 
 
 if __name__ == '__main__':
