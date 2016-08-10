@@ -132,6 +132,61 @@ class LinkedList:
 
         print("The data provided is not present")
 
+    # method to delete a node at a particular position
+    def delete_pos(self, pos):
+        count = 0
+        current_node = self.head
+        previous_node = self.head
+
+        if pos > self.head or pos < 0:
+            print("The position does not exist.")
+        else:
+            while current_node.next is not None or count < pos:
+                count += 1
+                if count == pos:
+                    previous_node.next = current_node.next
+                    self.length -= 1
+                    return
+                else:
+                    previous_node = current_node
+                    current_node = current_node.next
+
+    # return the length of the list
+    def get_length(self):
+        return self.length
+
+    # return the first element of the list
+    def get_first(self):
+        if self.length == 0:
+            print("The list is empty")
+        else:
+            return self.head.data
+
+    # return the last element of the list
+    def get_last(self):
+        if self.length == 0:
+            print("The list is empty")
+        else:
+            current_node = self.head
+            while current_node.next is not None:
+                current_node = current_node.next
+            return current_node.data
+
+    # method to get a node at any position
+    def get_pos(self, pos):
+        count = 0
+        current_node = self.head
+
+        if pos > self.length or pos < 0:
+            print("The position does not exist")
+        else:
+            while current_node.next is not None or count < pos:
+                count += 1
+                if count == pos:
+                    return current_node.data
+                else:
+                    current_node = current_node.next
+
     # method to print the whole list
     def print_list(self):
         node_list = []
@@ -140,7 +195,6 @@ class LinkedList:
             node_list.append(current_node.data)
             current_node = current_node.next
         print(node_list)
-
 
 if __name__ == '__main__':
     node1 = Node(1)
