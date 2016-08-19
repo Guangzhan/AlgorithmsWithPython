@@ -216,4 +216,4 @@ if __name__ == '__main__':
     ll.add_node(node7)
     ll.add_node(node8)
     ll.add_node(node9)
-    ll.print_list()
+
