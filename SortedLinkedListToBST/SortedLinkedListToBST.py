@@ -196,6 +196,97 @@ class LinkedList:
             current_node = current_node.next
         print(node_list)
 
+
+class BSTNode:
+    def __init__(root, data=None):
+        root.left = None
+        root.right = None
+        root.data = data
+
+
+def insert_node(root, node):
+    if root is None:
+        root = node
+    else:
+        if root.data > node.data:
+            if root.left is None:
+                root.left = node
+            else:
+                insert_node(root.left, node)
+        else:
+            if root.right is None:
+                root.right = node
+            else:
+                insert_node(root.right, node)
+
+
+def delete_node(root, data):
+    if root.right == data:
+        if root.right and root.left:
+            [psucc, succ] = find_min(root.right, root)
+
+            if psucc.left == succ:
+                psucc.left = succ.right
+            else:
+                psucc.right = succ.right
+            succ.left = root.left
+            succ.right = root.right
+            return succ
+        else:
+            if root.left:
+                return root.left
+            else:
+                return root.right
+    else:
+        if root.data > data:
+            if root.left:
+                root.left = delete_node(root.left, data)
+            else:
+                if root.right:
+                    root.right = delete_node(root.right, data)
+    return root
+
+
+def find_min(root, parent):
+    if root.left:
+        return find_min(root.left)
+    else:
+        return [parent, root]
+
+
+# method to Traversal tree preOrder
+def preorder_traversal(root):
+    if not root:
+        return
+    print(root.data)
+    preorder_traversal(root.left)
+    preorder_traversal(root.right)
+
+
+def inorder_traversal(root):
+    if not root:
+        return
+    inorder_traversal(root.left)
+    print(root.data)
+    inorder_traversal(root.right)
+
+
+def sorted_list_to_bst(ll, start, end):
+    if start > end:
+        return None
+    mid = start + (end - start) / 2
+    left = sorted_list_to_bst(ll, start, mid - 1)
+    root = BSTNode(ll.head.data)
+    ll.delete_big()
+    root.left = left
+    root.right = sorted_list_to_bst(ll, mid + 1, end)
+    return root
+
+
+def convertSortedListToBST(ll, n):
+    return sorted_list_to_bst(ll, 0, n - 1)
+
+
 if __name__ == '__main__':
     node1 = Node(1)
     node2 = Node(2)
@@ -216,4 +307,7 @@ if __name__ == '__main__':
     ll.add_node(node7)
     ll.add_node(node8)
     ll.add_node(node9)
+    ll.print_list()
+    root = convertSortedListToBST(ll, ll.length)
+    inorder_traversal(root)
 
